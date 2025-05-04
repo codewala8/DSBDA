@@ -1,0 +1,66 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+
+
+data = pd.read_csv("tecdiv.csv")
+
+
+
+data
+
+
+
+
+print("The first five rows are as follows: ")
+data.head()
+
+
+
+data.tail()
+
+
+
+data.describe()
+
+
+
+data.info()
+
+
+
+data.columns
+
+
+
+data.isnull().sum()
+
+
+
+# Correct and safe way to keep last 3 characters of each roll number
+data['Roll no '] = data['Roll no '].apply(lambda x: str(x)[-3:])
+data.head()
+
+
+
+
+sns.boxplot(y=data['First year:   Sem 1'])
+
+
+
+sns.boxplot(y=data['First year:   Sem 2'])
+
+
+
+sns.boxplot(y=data["Second year:   Sem 1"])
+
+
+sns.boxplot(y=data["Second year:   Sem 2"])
+
+
+
+
+

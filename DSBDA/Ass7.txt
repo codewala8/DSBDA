@@ -1,0 +1,89 @@
+# Required Imports
+
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from sklearn.feature_extraction.text import TfidfVectorizer
+import string
+
+
+
+# Download necessary NLTK data
+nltk. download('punkt')
+nltk. download('stopwords')
+
+
+
+# Sample document
+corpus = "I am Siddhi Horane from sinhgad institute of technology and science lonavala ."
+
+
+
+ # Step 1: Tokenization
+tokens = word_tokenize(corpus)
+print("Tokens:", tokens)
+
+
+
+
+# step 2 : POS Tagging
+from nltk import pos_tag
+
+
+
+tokens = word_tokenize(corpus)
+print(pos_tag(tokens))
+
+
+
+# Step 3: Remove stop words and punctuation
+stop_words = set(stopwords.words("english"))
+cleaned = [word.lower() for word in tokens if word.lower() not in stop_words and word not in string.punctuation]
+print("Cleaned Words:", cleaned)
+
+
+
+# Step 4: Stemming
+stemmer = PorterStemmer()
+stemmed = [stemmer.stem(word) for word in cleaned]
+print("Stemmed Words:", stemmed)
+
+
+
+# Step 5: TF-IDF on two simple sentences
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+
+# Sample documents
+corpus = [
+    "Siddhi Horane is a computer engineering student.",
+    "she is from sinhgad institute of technology lonavala."
+]
+
+
+
+
+# Initialize vectorizer
+vectorizer = TfidfVectorizer()
+
+
+# Fit and transform the documents
+matrix = vectorizer.fit_transform(corpus)
+print(vectorizer.vocabulary_)
+
+
+
+# Step 6: Show TF-IDF values
+tfidf_matrix = vectorizer.transform(corpus)
+print(tfidf_matrix)
+
+
+
+
+
+
+
+
+
